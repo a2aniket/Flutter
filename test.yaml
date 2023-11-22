@@ -1,0 +1,742 @@
+openapi: 3.0.3
+info:
+  title: Swagger Employee Management System - OpenAPI 3.0
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+servers:
+  - url: https://petstore3.swagger.io/api/v3
+tags:
+  - name: employee
+    description: Operations about employee
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: question
+    description: Operations about question
+  - name: answer
+    description: Operations about answer
+  - name: project
+    description: Operations about project
+    
+  
+    
+paths:
+  /employee:
+    put:
+      tags:
+        - employee
+      summary: Update an existing employee
+      description: Update an existing employee by Id
+      operationId: updateEmployee
+      requestBody:
+        description: Update an existent employee
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Employee'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Employee'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Employee'            
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Employee not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - employee
+      summary: Add a new employee
+      description: Add a new employee
+      operationId: addEmployee
+      requestBody:
+        description: Create a new employee
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Employee'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Employee'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Employee'         
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - employee
+      summary: Get list of all employees
+      description: Returns list of employees
+      operationId: getEmployeeList
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+               schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Employee'         
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Employee not found
+  /employee/{employeeId}:
+    get:
+      tags:
+        - employee
+      summary: Find employee by ID
+      description: Returns a single employee
+      operationId: getEmployee
+      parameters:
+        - name: employeeId
+          in: path
+          description: ID of employee to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+               schema:
+                  $ref: '#/components/schemas/Employee'            
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Employee not found
+    delete:
+      tags:
+        - employee
+      summary: Deletes a employee
+      description: delete a employee
+      operationId: deleteEmployee
+      parameters:
+        - name: employeeId
+          in: path
+          description: Employee id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+               schema:
+                  $ref: '#/components/schemas/Employee'            
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '400':
+          description: Invalid employee value
+  
+  /question:
+    put:
+      tags:
+        - question
+      summary: Update an existing question
+      description: Update an existing question by Id
+      operationId: updateQuestion
+      requestBody:
+        description: Update an existent question in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Question'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Question'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Question'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Question'            
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Question'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Question not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - question
+      summary: Add a new question to the store
+      description: Add a new question to the store
+      operationId: addQuestion
+      requestBody:
+        description: Create a new question in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Question'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Question'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Question'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Question'         
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Question'
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - question
+      summary: Get list of all questions
+      description: Returns list of questions
+      operationId: getQuestionList
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+               schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Question'         
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Question'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Question not found
+  /question/{questionId}:
+    get:
+      tags:
+        - question
+      summary: Find question by ID
+      description: Returns a single question
+      operationId: getQuestion
+      parameters:
+        - name: questionId
+          in: path
+          description: ID of question to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+               schema:
+                  $ref: '#/components/schemas/Question'            
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Question'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Question not found
+    delete:
+      tags:
+        - question
+      summary: Deletes a question
+      description: delete a question
+      operationId: deleteQuestion
+      parameters:
+        - name: questionId
+          in: path
+          description: Question id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+               schema:
+                  $ref: '#/components/schemas/Question'            
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Question'
+        '400':
+          description: Invalid question value
+  
+  /answer:
+    put:
+      tags:
+        - answer
+      summary: Update an existing answer
+      description: Update an existing answer by Id
+      operationId: updateAnswer
+      requestBody:
+        description: Update an existent answer in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Answer'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Answer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Answer'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Answer'            
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Answer'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Answer not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - answer
+      summary: Add a new answer to the store
+      description: Add a new answer to the store
+      operationId: addAnswer
+      requestBody:
+        description: Create a new answer in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Answer'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Answer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Answer'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Answer'         
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Answer'
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - answer
+      summary: Get list of all answers
+      description: Returns list of answers
+      operationId: getAnswerList
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+               schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Answer'         
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Answer'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Answer not found
+  /answer/{answerId}:
+    get:
+      tags:
+        - answer
+      summary: Find answer by ID
+      description: Returns a single answer
+      operationId: getAnswer
+      parameters:
+        - name: answerId
+          in: path
+          description: ID of answer to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+               schema:
+                  $ref: '#/components/schemas/Answer'            
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Answer'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Answer not found
+    delete:
+      tags:
+        - answer
+      summary: Deletes a answer
+      description: delete a answer
+      operationId: deleteAnswer
+      parameters:
+        - name: answerId
+          in: path
+          description: Answer id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+               schema:
+                  $ref: '#/components/schemas/Answer'            
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Answer'
+        '400':
+          description: Invalid answer value
+
+  /project:
+    put:
+      tags:
+        - project
+      summary: Update an existing project
+      description: Update an existing project by Id
+      operationId: updateProject
+      requestBody:
+        description: Update an existent project in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Project'            
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Project not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - project
+      summary: Add a new project to the store
+      description: Add a new project to the store
+      operationId: addProject
+      requestBody:
+        description: Create a new project in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Project'         
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - project
+      summary: Get list of all projects
+      description: Returns list of projects
+      operationId: getProjectList
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+               schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'         
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Project not found
+  /project/{projectId}:
+    get:
+      tags:
+        - project
+      summary: Find project by ID
+      description: Returns a single project
+      operationId: getProject
+      parameters:
+        - name: projectId
+          in: path
+          description: ID of project to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+               schema:
+                  $ref: '#/components/schemas/Project'            
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Project not found
+    delete:
+      tags:
+        - project
+      summary: Deletes a project
+      description: delete a project
+      operationId: deleteProject
+      parameters:
+        - name: projectId
+          in: path
+          description: Project id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+               schema:
+                  $ref: '#/components/schemas/Project'            
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Invalid project value
+
+components:
+  schemas:
+    Employee:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+        points:
+          type: integer
+          format: int64
+      xml:
+        name: Employee
+    Question:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        answerId:
+          type: integer
+          format: int64
+        priority:
+          type: string
+        skills:
+          type: string
+        employeId:
+          type: integer
+          format: int64
+         
+      xml:
+        name: Question
+    Answer:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        answerDesc:
+          type: string
+        empid:
+          type: integer
+          format: int64
+          example: 1
+        rating:
+          type: integer
+          format: int64
+        likes:
+          type: integer
+          format: int64
+      xml:
+        name: Answer
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        commentDesc:
+          type: string
+        questionid:
+          type: integer
+          format: int64
+        empId:
+          type: integer
+          format: int64
+
+      xml:
+        name: Comment
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        url:
+          type: string
+        attach:
+          type: string
+        rating:
+          type: integer
+          format: int64
+      xml:
+        name: Project
+            
+  requestBodies:
+    Employee:
+      description: Employee object that needs to be added
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Employee'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Employee'
+    Question:
+      description: Question object that needs to be added 
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Question'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Question'
+    Answer:
+      description: Answer object that needs to be added 
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Answer'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Answer'
+    Project:
+      description: Project object that needs to be added 
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Project'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Project'
